@@ -4,7 +4,11 @@ import subprocess
 
 def call_procress(command, stdout):
     if sys.version_info.major == 3:
-        return call_procress(command, stdout).stdout.decode()
+        result = subprocess.run(command, stdout=stdout)
+        try:
+            return result.stdout.decode()
+        except:
+            return result
     else:
         return subprocess.check_output(command, stdout)
 
@@ -17,15 +21,13 @@ def test_date_range_base():
 def test_date_range_periods():
     result = call_procress(['date_range', '-s', '20200201', '-p', '20'],
                            stdout=subprocess.PIPE)
-    assert len(result.split(
-        '\n')) == 21, 'paramter PERIODS not working'
+    assert len(result.split('\n')) == 21, 'paramter PERIODS not working'
 
 
 def test_date_range_with_end():
     result = call_procress(['date_range', '-s', '20200201', '-e', '20200205'],
                            stdout=subprocess.PIPE)
-    assert len(
-        result.split('\n')) == 6, 'paramter END not working'
+    assert len(result.split('\n')) == 6, 'paramter END not working'
 
 
 def test_date_range_with_format():

@@ -24,6 +24,6 @@ matrix:
       sudo: true
 install:
   - cd ~/ && git clone https://github.com/Jhengsh/dev-date-cli.git && cd ~/dev-date-cli && python setup.py install
-  - pip install pytest-cov
+  - pip install pytest
 script:
   - cd ~/dev-date-cli && pytest
