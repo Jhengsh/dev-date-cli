@@ -23,7 +23,7 @@ matrix:
       dist: xenial
       sudo: true
 install:
-  - cd Jhengsh/date-cli && python setup.py install
+  - cd ~/ && git clone https://github.com/Jhengsh/dev-date-cli.git && cd ~/dev-date-cli && python setup.py install
   - pip install pytest-cov
 script:
-  - cd Jhengsh/date-cli && pytest
+  - cd ~/dev-date-cli && pytest
